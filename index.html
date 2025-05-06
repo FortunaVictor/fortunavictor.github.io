@@ -365,7 +365,13 @@ fetch('https://hook.eu2.make.com/13a31kvxp88w2do61e9zjxdxftl4j1uf', { // Ваш 
     return response.text(); // Используем response.text() вместо response.json()
 })
 .then(result => {
-    alert('Данные успешно отправлены!');
+    // Проверяем, если результат пустой или содержит только пробелы
+    if (!result.trim()) {
+        alert('Данные успешно отправлены!');
+    } else {
+        console.log('Ответ сервера:', result);
+        alert('Данные успешно отправлены!');
+    }
 })
 .catch(error => {
     console.error('Ошибка при отправке данных:', error);
