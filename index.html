@@ -350,22 +350,27 @@
             // Добавляем RACI строку в данные формы
             data.raci = raciString;
 
-            // Отправляем данные на webhook через POST-запрос
-            fetch('https://hook.eu2.make.com/13a31kvxp88w2do61e9zjxdxftl4j1uf', { // Ваш вебхук
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => response.json())
-            .then(result => {
-                alert('Данные успешно отправлены!');
-            })
-            .catch(error => {
-                console.error('Ошибка при отправке данных:', error);
-                alert('Произошла ошибка при отправке данных. Пожалуйста, попробуйте снова.');
-            });
+// Отправляем данные на webhook через POST-запрос
+fetch('https://hook.eu2.make.com/13a31kvxp88w2do61e9zjxdxftl4j1uf', { // Ваш вебхук
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.text(); // Используем response.text() вместо response.json()
+})
+.then(result => {
+    alert('Данные успешно отправлены!');
+})
+.catch(error => {
+    console.error('Ошибка при отправке данных:', error);
+    alert('Произошла ошибка при отправке данных. Пожалуйста, попробуйте снова.');
+});
         });
 
         // Функция для прокрутки к активному элементу при фокусировке
