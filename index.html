@@ -60,12 +60,12 @@
         .raci-table th {
             background-color: #f0f0f0;
         }
-        .raci-dropdown {
+        .raci-dropdown, .custom-select {
             position: relative;
             display: inline-block;
             width: 100%;
         }
-        .raci-dropdown select {
+        .raci-dropdown select, .custom-select select {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -81,7 +81,7 @@
             background-position: right 10px center;
             background-size: 10px 10px;
         }
-        .raci-dropdown-content {
+        .raci-dropdown-content, .custom-select-content {
             display: none;
             position: absolute;
             top: 100%;
@@ -93,17 +93,27 @@
             max-height: 200px; /* Ограничение высоты выпадающего меню */
             overflow-y: auto;
         }
-        .raci-dropdown-content table {
-            width: 100%;
+        .custom-select-content ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
-        .raci-dropdown-content table tr:hover {
+        .custom-select-content li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .custom-select-content li:last-child {
+            border-bottom: none;
+        }
+        .custom-select-content li:hover {
             background-color: #f0f0f0;
         }
+        .custom-select.active .custom-select-content,
         .raci-dropdown.active .raci-dropdown-content {
             display: block;
-        }
-        .placeholder-bold {
-            font-weight: bold;
         }
     </style>
 </head>
@@ -159,27 +169,32 @@
             <textarea id="solution" name="solution" rows="4" placeholder="Решение" required></textarea>
 
             <!-- Поле "Кому" -->
-            <select id="to" name="to" required>
-                <option value="">Кому</option>
-                <option value="Отдел обучения - Маклак Аня">Отдел обучения - Маклак Аня</option>
-                <option value="Отдел Бронирования - Кудра Настя">Отдел Бронирования - Кудра Настя</option>
-                <option value="Технический отдел - Заяц Валера">Технический отдел - Заяц Валера</option>
-                <option value="Бухгалтерия - Сабодахо Сергей">Бухгалтерия - Сабодахо Сергей</option>
-                <option value="Отдел маркетинга - Сенюк Аня">Отдел маркетинга - Сенюк Аня</option>
-                <option value="Отдел маркетинга - Полина">Отдел маркетинга - Полина</option>
-                <option value="Отдел продаж - Мицкевич Михаил">Отдел продаж - Мицкевич Михаил</option>
-                <option value="Администрация - Ланчакова Екатерина">Администрация - Ланчакова Екатерина</option>
-                <option value="Администрация - Сикорский Владимир">Администрация - Сикорский Владимир</option>
-                <option value="Администрация - Фортуна Таня">Администрация - Фортуна Таня</option>
-                <option value="Администрация - Семенов Сергей">Администрация - Семенов Сергей</option>
-                <option value="Проект одежда - Семёнов Сергей">Проект одежда - Семёнов Сергей</option>
-                <option value="Проект одежда - Фортуна Таня">Проект одежда - Фортуна Таня</option>
-                <option value="Проект одежда - Сикорский Владимир">Проект одежда - Сикорский Владимир</option>
-                <option value="Проект одежда - Даша">Проект одежда - Даша</option>
-                <option value="Проект разработки - Стас Метельский">Проект разработки - Стас Метельский</option>
-            </select>
+            <label for="toSelect">Кому</label>
+            <div class="custom-select">
+                <select id="toSelect" name="toSelect">
+                    <option value="">Кому</option>
+                </select>
+                <div class="custom-select-content">
+                    <ul>
+                        <li><label><span>Семёнов Сергей</span><input type="checkbox" name="to_Семёнов_Сергей" value="Семёнов Сергей"></label></li>
+                        <li><label><span>Фортуна Таня</span><input type="checkbox" name="to_Фортуна_Таня" value="Фортуна Таня"></label></li>
+                        <li><label><span>Мицкевич Михаил</span><input type="checkbox" name="to_Мицкевич_Михаил" value="Мицкевич Михаил"></label></li>
+                        <li><label><span>Сабодахо Сергей</span><input type="checkbox" name="to_Сабодахо_Сергей" value="Сабодахо Сергей"></label></li>
+                        <li><label><span>Маклак Аня</span><input type="checkbox" name="to_Маклак_Аня" value="Маклак Аня"></label></li>
+                        <li><label><span>Потапович Александрина</span><input type="checkbox" name="to_Потапович_Александрина" value="Потапович Александрина"></label></li>
+                        <li><label><span>Кудра Настя</span><input type="checkbox" name="to_Кудра_Настя" value="Кудра Настя"></label></li>
+                        <li><label><span>Заяц Валера</span><input type="checkbox" name="to_Заяц_Валера" value="Заяц Валера"></label></li>
+                        <li><label><span>Ланчакова Екатерина</span><input type="checkbox" name="to_Ланчакова_Екатерина" value="Ланчакова Екатерина"></label></li>
+                        <li><label><span>Сикорский Владимир</span><input type="checkbox" name="to_Сикорский_Владимир" value="Сикорский Владимир"></label></li>
+                        <li><label><span>Сенюк Аня</span><input type="checkbox" name="to_Сенюк_Аня" value="Сенюк Аня"></label></li>
+                        <li><label><span>Полина</span><input type="checkbox" name="to_Полина" value="Полина"></label></li>
+                        <li><label><span>Даша</span><input type="checkbox" name="to_Даша" value="Даша"></label></li>
+                    </ul>
+                </div>
+            </div>
 
             <!-- Поле "RACI" -->
+            <label for="raciSelect">RACI</label>
             <div class="raci-dropdown">
                 <select id="raciSelect" name="raciSelect">
                     <option value="">RACI</option>
@@ -294,121 +309,142 @@
 
             <!-- Кнопка отправки -->
             <button type="submit">Отправить</button>
-            <div id="errorMessage" class="error" style="display: none;">Все поля должны быть заполнены!</div>
+            <div id="errorMessage" class="error" style="display: none;"></div>
         </form>
     </div>
 
     <script>
+        // Обработчик отправки формы
         document.getElementById('taskForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Предотвращаем стандартную отправку формы
 
-            // Получаем данные из формы
             const formData = new FormData(this);
             const data = Object.fromEntries(formData.entries());
 
-            // Проверяем, что все обязательные поля заполнены
-            const requiredFields = ['from', 'due_date', 'priority', 'task_type', 'description', 'solution', 'to'];
-            let allFieldsFilled = true;
-            for (const field of requiredFields) {
-                if (!data[field]) {
-                    allFieldsFilled = false;
-                    break;
-                }
-            }
+            // Проверка обязательных полей
+            const requiredFields = ['from', 'due_date', 'priority', 'task_type', 'description', 'solution'];
+            let allFieldsFilled = requiredFields.every(field => data[field]);
 
-            // Если хотя бы одно обязательное поле не заполнено, показываем ошибку
+            // Проверка поля "Кому"
+            const toCheckboxes = document.querySelectorAll('input[name^="to_"]:checked');
+            const toSelected = toCheckboxes.length > 0;
+
+            // Проверка поля RACI
+            const raciCheckboxes = document.querySelectorAll('input[name^="raci_"]:checked');
+            const raciSelected = raciCheckboxes.length > 0;
+
+            // Отображение ошибок
             const errorMessage = document.getElementById('errorMessage');
-            if (!allFieldsFilled) {
+            if (!allFieldsFilled || !toSelected || !raciSelected) {
                 errorMessage.style.display = 'block';
-                errorMessage.textContent = 'Все поля должны быть заполнены!';
+                if (!allFieldsFilled) {
+                    errorMessage.textContent = 'Все поля должны быть заполнены!';
+                } else if (!toSelected) {
+                    errorMessage.textContent = 'Необходимо выбрать хотя бы одного человека в поле "Кому"!';
+                } else {
+                    errorMessage.textContent = 'Необходимо выбрать хотя бы одну роль в поле RACI!';
+                }
                 return;
             } else {
                 errorMessage.style.display = 'none';
             }
 
-            // Обрабатываем RACI данные
+            // Обработка данных "Кому"
+            const toValues = Array.from(toCheckboxes).map(cb => cb.value).join(', ');
+            data.to = toValues;
+
+            // Обработка данных RACI
             const raciData = {};
-            const checkboxes = document.querySelectorAll('input[name^="raci_"]');
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    // Используем регулярное выражение для извлечения имени и роли
-                    const match = checkbox.name.match(/^raci_(.*?)_(R|A|C|I)$/);
-                    if (match) {
-                        const name = match[1];
-                        const role = match[2];
-                        if (!raciData[name]) {
-                            raciData[name] = [];
-                        }
-                        raciData[name].push(role);
+            raciCheckboxes.forEach(checkbox => {
+                const match = checkbox.name.match(/^raci_(.*?)_(R|A|C|I)$/);
+                if (match) {
+                    const name = match[1];
+                    const role = match[2];
+                    if (!raciData[name]) {
+                        raciData[name] = [];
                     }
+                    raciData[name].push(role);
                 }
             });
+            data.raci = Object.entries(raciData)
+                .map(([name, roles]) => `${name} (${roles.join(', ')})`)
+                .join(', ');
 
-            // Преобразуем RACI данные в строку
-            const raciString = Object.entries(raciData).map(([name, roles]) => `${name} (${roles.join(', ')})`).join(', ');
-
-            // Добавляем RACI строку в данные формы
-            data.raci = raciString;
-
-            // Отправляем данные на webhook через POST-запрос
-fetch('https://hook.eu2.make.com/13a31kvxp88w2do61e9zjxdxftl4j1uf', { // Ваш вебхук
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-})
-.then(response => {
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.text(); // Используем response.text() для получения текстового ответа
-})
-.then(result => {
-    // Проверяем, если результат содержит "Accepted"
-    if (result.trim() === 'Accepted') {
-        alert('Данные успешно отправлены!');
-    } else {
-        console.error('Неожиданный ответ сервера:', result);
-        alert('Произошла ошибка при отправке данных. Пожалуйста, попробуйте снова.');
-    }
-})
-.catch(error => {
-    console.error('Ошибка при отправке данных:', error);
-    alert('Произошла ошибка при отправке данных. Пожалуйста, попробуйте снова.');
-});
+            // Отправка данных на сервер
+            fetch('https://hook.eu2.make.com/13a31kvxp88w2do61e9zjxdxftl4j1uf ', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                return response.text();
+            })
+            .then(result => {
+                if (result.trim() === 'Accepted') {
+                    alert('Данные успешно отправлены!');
+                } else {
+                    console.error('Неожиданный ответ сервера:', result);
+                    alert('Произошла ошибка при отправке данных. Пожалуйста, попробуйте снова.');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка при отправке данных:', error);
+                alert('Произошла ошибка при отправке данных. Пожалуйста, попробуйте снова.');
+            });
         });
 
-        // Функция для прокрутки к активному элементу при фокусировке
-        function scrollToActiveElement() {
-            const activeElement = document.activeElement;
-            if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.tagName === 'SELECT') {
-                setTimeout(() => {
-                    activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
-            }
-        }
-
-        // Добавляем обработчики событий для фокусировки и потери фокуса
-        document.querySelectorAll('input, select, textarea').forEach(element => {
-            element.addEventListener('focus', scrollToActiveElement);
+        // Управление выпадающими списками
+        document.getElementById('toSelect').addEventListener('click', function(event) {
+            event.stopPropagation();
+            const dropdown = this.parentElement;
+            dropdown.classList.toggle('active');
         });
 
-        // Функция для управления выпадающим списком RACI
         document.getElementById('raciSelect').addEventListener('click', function(event) {
             event.stopPropagation();
             const dropdown = this.parentElement;
             dropdown.classList.toggle('active');
         });
 
-        // Закрытие выпадающего списка RACI при клике вне области
+        // Закрытие выпадающих списков при клике вне области
         document.addEventListener('click', function(event) {
+            const toDropdown = document.querySelector('.custom-select');
             const raciDropdown = document.querySelector('.raci-dropdown');
+
+            const isClickInsideTo = toDropdown.contains(event.target);
             const isClickInsideRACI = raciDropdown.contains(event.target);
 
+            if (!isClickInsideTo && toDropdown.classList.contains('active')) {
+                toDropdown.classList.remove('active');
+            }
             if (!isClickInsideRACI && raciDropdown.classList.contains('active')) {
                 raciDropdown.classList.remove('active');
             }
+        });
+
+        // Прокрутка к активному элементу при фокусировке
+        function scrollToActiveElement() {
+            const activeElement = document.activeElement;
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(activeElement.tagName)) {
+                setTimeout(() => {
+                    activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        }
+
+        document.querySelectorAll('input, select, textarea').forEach(element => {
+            element.addEventListener('focus', scrollToActiveElement);
+        });
+
+        // Обновление значения поля "Кому" при выборе чекбоксов
+        document.querySelectorAll('.custom-select-content input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const selectedValues = Array.from(document.querySelectorAll('.custom-select-content input[type="checkbox"]:checked'))
+                    .map(cb => cb.value)
+                    .join(', ');
+                document.getElementById('toSelect').value = selectedValues || 'Кому';
+            });
         });
     </script>
 </body>
